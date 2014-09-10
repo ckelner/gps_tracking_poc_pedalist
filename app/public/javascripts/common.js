@@ -9,24 +9,24 @@ app.init = function() {
     app.fillMapHeight();
   }
   app.googleMaps.initialize();
-  app.loadTweetDataFromDB();
-  app.setupTweetStreamSocket();
+  //app.loadTweetDataFromDB();
+  //app.setupTweetStreamSocket();
 }
-app.loadTweetDataFromDB = function() {
+/*app.loadTweetDataFromDB = function() {
   app.socket.on('firstShow', function (data) {
     var size = data.tweets.length
     for(var i=0;i<size;i++){
       app.processTweetData(data.tweets[i], false);
     }
   });
-}
-app.setupTweetStreamSocket = function() {
+}*/
+/*app.setupTweetStreamSocket = function() {
   app.socket.on('data', function(tweet) {
     app.processTweetData(tweet, false);
   });
-}
+}*/
 // history is used for the slider - boolean true/false
-app.processTweetData = function(tweet, history) {
+/*app.processTweetData = function(tweet, history) {
   if(!app.pause && tweet.user) {
     // lat lon location of the tweet
     var tweetLatLng = null;
@@ -137,17 +137,17 @@ app.processTweetData = function(tweet, history) {
       return htmlStr;
     }
   }
-}
+}*/
 // do reverse lookup of street address (twitter seems to only provide City, State/Province, Country)
-app.reverseGeoCodeAddress = function( address, htmlStr, create, icon_url ) {
+/*app.reverseGeoCodeAddress = function( address, htmlStr, create, icon_url ) {
   app.googleMaps.geocoder.geocode( { 'address': address}, function(results, status) {
     // good to go - if this fails we can't map it, so just fuck it
     if (status == google.maps.GeocoderStatus.OK) {
       app.createMapMarker( htmlStr, results[0].geometry.location, create, icon_url);
     }
   });
-}
-app.createWUMapUrlLatLon = function ( lat, lon ) {
+}*/
+/*app.createWUMapUrlLatLon = function ( lat, lon ) {
   return "http://www.wunderground.com/wundermap/?" +
   "lat=" + lat +
   "&lon=" + lon +
@@ -156,9 +156,9 @@ app.createWUMapUrlLatLon = function ( lat, lon ) {
   "&plat=" + lat +
   "&plon=" + lon +
   "&tl.play=0&tl.spd=2&viewportstart=now-14432&viewportend=now-32&groupSevere=1&groupHurricane=1&groupFire=1&groupCamsPhotos=1&groupRealEstate=1&eyedropper=0&extremes=0&fault=0&favs=0&femaflood=0&fire=0&firewfas=0&fissures=0&fronts=0&hurrevac=0&hur=0&labels=0&lightning=0&livesurge=0&mm=0&ndfd=0&rad=1&rad.num=1&rad.spd=25&rad.opa=70&rad.type=00Q&rad.type2=&rad.smo=1&sat=1&sat.num=1&sat.spd=25&sat.opa=85&sat.gtt1=109&sat.gtt2=109&sat.type=IR4&wxsn=1&wxsn.mode=temp&wxsn.opa=50&wxsn.showpws=1";
-}
+}*/
 // creates a google map marker to plop down with an infowindow attached
-app.createMapMarker = function( htmlStr, tweetLatLng, created, icon_url ) {
+/*app.createMapMarker = function( htmlStr, tweetLatLng, created, icon_url ) {
   var infoWindow = new google.maps.InfoWindow();
   infoWindow.setContent(htmlStr);
   // action to perform when the marker gets clicked
@@ -182,7 +182,7 @@ app.createMapMarker = function( htmlStr, tweetLatLng, created, icon_url ) {
   marker.created_at = created;
   google.maps.event.addListener(marker, 'click', onMarkerClick);
   app.map.allMarkers.push(marker);
-}
+}*/
 // on ready
 $(document).ready(function() {
   app.init();

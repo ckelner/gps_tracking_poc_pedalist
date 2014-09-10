@@ -5,11 +5,12 @@ var express = require('express'),
   io = require('socket.io'),
   _ = require('underscore'),
   path = require('path'),
-//  twitter = require('ntwitter'),
+  //twitter = require('ntwitter'),
   request = require('request'),
   posts = require('./routes/posts.js'),
-  rank = require('./rank.js'),
-  config = require('./config.json');
+  coords = require('./routes/coords.js');
+  //rank = require('./rank.js'),
+  //config = require('./config.json');
 
 var app = express();
 var server = http.createServer(app);
@@ -31,7 +32,9 @@ app.get('/', routes.index);
 //app.get('/instagram', posts.findAllInstagrams);
 //app.get('/posts/:id', posts.findById);
 //app.post('/posts', posts.addPost);
+app.post('/coords', coords.addCoords);
 //app.put('/posts/:id', posts.updatePost);
+app.put('/coords/:id', coords.updateCoords);
 //app.delete('/posts/:id', posts.deletePost);
 
 // mongo setup

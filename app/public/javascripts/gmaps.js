@@ -50,7 +50,7 @@ app.googleMaps.stepTwo = function(lat,lon) {
 };
 
 // Kelner -- we can use this for re-mapping the bike ride?  -- Was used for weather overlay [now removed]
-app.googleMaps.loadOverlay = function() {
+/*app.googleMaps.loadOverlay = function() {
   var map = app.googleMaps.map;
   // build wunderground image api params
   var mapBounds = map.getBounds();
@@ -77,7 +77,7 @@ app.googleMaps.loadOverlay = function() {
   app.googleMaps.overlay.setOpacity(0.5);
   // remove old overlay
   // setTimeout(app.googleMaps.removeOldOverlay,1000);
-};
+};*/
 
 app.googleMaps.removeOldOverlay = function() {
   var overLen = app.googleMaps.lastOverlay.length;
