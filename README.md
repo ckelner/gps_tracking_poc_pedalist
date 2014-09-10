@@ -1,2 +1,4 @@
-spsu_fall_game_jam_2014
-=======================
+A "SPSU Fall Game Jam 2014" Game
+================================
+
+Exergaming with Bicycles.
