@@ -10,14 +10,15 @@ app.googleMaps.initialize = function() {
   // Kelner edit 2014-09-10 12:45pm
   //var ATL_lat = 33.756264;
   //var ATL_lon = -84.385179;
-  if(google.loader.ClientLocation) {
+  /*if(google.loader.ClientLocation) {
     var location = {};
     location.coords = {};
     location.coords.latitude = google.loader.ClientLocation.latitude;
     location.coords.longitude = google.loader.ClientLocation.longitude;
     app.googleMaps.geoSuccess(location);
   }
-  else if (navigator.geolocation) {
+  else*/
+  if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(app.googleMaps.geoSuccess);
   } else {
     var html5Options = { enableHighAccuracy: true, timeout: 3000, maximumAge: 0 };
