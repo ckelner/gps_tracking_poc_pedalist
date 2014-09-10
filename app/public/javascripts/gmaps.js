@@ -10,8 +10,12 @@ app.googleMaps.initialize = function() {
   // Kelner edit 2014-09-10 12:45pm
   //var ATL_lat = 33.756264;
   //var ATL_lon = -84.385179;
-  var html5Options = { enableHighAccuracy: true, timeout: 3000, maximumAge: 0 };
-  geolocator.locate(app.googleMaps.geoSuccess, app.googleMaps.geoFail, true, html5Options);
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(app.googleMaps.geoSuccess);
+  } else {
+    var html5Options = { enableHighAccuracy: true, timeout: 3000, maximumAge: 0 };
+    geolocator.locate(app.googleMaps.geoSuccess, app.googleMaps.geoFail, true, html5Options);
+  }
 }
 app.googleMaps.geoSuccess = function (location) {
     app.googleMaps.stepTwo(location.coords.latitude,location.coords.longitude)
