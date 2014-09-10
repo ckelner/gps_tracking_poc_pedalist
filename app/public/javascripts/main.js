@@ -9,14 +9,14 @@ app.init = function() {
   //app.pausePlayDiv();
   //app.initBigDataDiv();
   //app.initSlider();
-  app.setupRadarButtonToggle();
+  //app.setupRadarButtonToggle();
 }
-app.setupRadarButtonToggle = function() {
+/*app.setupRadarButtonToggle = function() {
   $("#toggle_button").click(function() {
     app.radar = (app.radar == false ? true : false)
     app.googleMaps.loadOverlay();
   });
-}
+}*/
 /*app.pausePlayDiv = function() {
   $("#pause_play").click(function() {
     app.pause = (app.pause == false ? true : false)

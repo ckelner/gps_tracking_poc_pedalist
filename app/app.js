@@ -60,8 +60,8 @@ var io = io.listen(server);
 io.set('log level', 1); // reduce socket io logging
 
 // provide 15 miutes of data to user at startup
-io.sockets.on('connection', function (socket) {
-  /*var end = new Date();
+/*io.sockets.on('connection', function (socket) {
+  var end = new Date();
   var start = new Date();
   start.setMinutes(start.getMinutes() - 15);
   db.collection('posts', function(err, collection) {
@@ -70,8 +70,8 @@ io.sockets.on('connection', function (socket) {
         socket.emit('firstShow', { tweets: items });
       }
     });
-  });*/
-});
+  });
+});*/
 
 // NTwitter setup
 /*var twit = new twitter({
@@ -368,5 +368,3 @@ io.sockets.on('connection', function (socket) {
 server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
-
-

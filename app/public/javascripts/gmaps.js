@@ -7,17 +7,6 @@ app.googleMaps.ir_Overlay = null;
 app.googleMaps.lastOverlay = [];
 
 app.googleMaps.initialize = function() {
-  // Kelner edit 2014-09-10 12:45pm
-  //var ATL_lat = 33.756264;
-  //var ATL_lon = -84.385179;
-  /*if(google.loader.ClientLocation) {
-    var location = {};
-    location.coords = {};
-    location.coords.latitude = google.loader.ClientLocation.latitude;
-    location.coords.longitude = google.loader.ClientLocation.longitude;
-    app.googleMaps.geoSuccess(location);
-  }
-  else*/
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(app.googleMaps.geoSuccess);
   } else {
@@ -39,32 +28,28 @@ app.googleMaps.stepTwo = function(lat,lon) {
   };
   var map = new google.maps.Map(document.getElementById("container"), mapOptions);
   app.googleMaps.map = map;
-  // set the google weather and cloud layers
-/*
-  var weatherLayer = new google.maps.weather.WeatherLayer({
-    temperatureUnits: google.maps.weather.TemperatureUnit.FAHRENHEIT
-  });
-*/
-  // redo overlay on map events
+
   google.maps.event.addListener(map, 'center_changed', function() {
-    app.googleMaps.loadOverlay();
+    //app.googleMaps.loadOverlay();
   });
   google.maps.event.addListener(map, 'bounds_changed', function() {
-    app.googleMaps.loadOverlay();
+    //app.googleMaps.loadOverlay();
   });
   google.maps.event.addListener(map, 'dragend', function() {
-    app.googleMaps.loadOverlay();
+    //app.googleMaps.loadOverlay();
   });
   google.maps.event.addListener(map, 'resize', function() {
-    app.googleMaps.loadOverlay();
+    //app.googleMaps.loadOverlay();
   });
   google.maps.event.addListener(map, 'zoom_changed', function() {
-    app.googleMaps.loadOverlay();
+    //app.googleMaps.loadOverlay();
   });
-  //weatherLayer.setMap(app.googleMaps.map);
-  setInterval(app.googleMaps.loadOverlay, 300000);
+  // reload the overlay (updated data)
+  // 300 seconds... that is slow :)
+  // setInterval(app.googleMaps.loadOverlay, 300000);
 };
 
+// Kelner -- we can use this for re-mapping the bike ride?  -- Was used for weather overlay [now removed]
 app.googleMaps.loadOverlay = function() {
   var map = app.googleMaps.map;
   // build wunderground image api params
@@ -72,12 +57,6 @@ app.googleMaps.loadOverlay = function() {
   var mapNE = mapBounds.getNorthEast();
   var mapSW = mapBounds.getSouthWest();
   var mapDiv = map.getDiv();
-  /* Animated seems to load too slow :(
-    var img = "http://api.wunderground.com/api/ba3cc8d32973ec43/animatedradar/image.gif?" +
-    "maxlat=" + mapNE.lat() + "&maxlon=" + mapNE.lng() + "&minlat=" +
-    mapSW.lat() + "&minlon=" + mapSW.lng() + "&width=" + mapDiv.offsetWidth +
-    "&height=" + mapDiv.offsetHeight + "&newmaps=0&rainsnow=1&smooth=1&noclutter=1&num=6";
-  */
   var img = null;
   if( app.radar ) {
     img = "http://api.wunderground.com/api/ba3cc8d32973ec43/radar/image.gif?" +
@@ -97,7 +76,7 @@ app.googleMaps.loadOverlay = function() {
   app.googleMaps.overlay.setMap(map);
   app.googleMaps.overlay.setOpacity(0.5);
   // remove old overlay
-  setTimeout(app.googleMaps.removeOldOverlay,1000);
+  // setTimeout(app.googleMaps.removeOldOverlay,1000);
 };
 
 app.googleMaps.removeOldOverlay = function() {
