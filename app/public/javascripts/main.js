@@ -2,6 +2,8 @@ app.pause = false;
 app.sliderDiv = null;
 app.radar = true;
 app.userId = null;
+app.userTrack = [];
+app.trackIntervalId = null;
 app.init = function() {
   app.fillMapHeight();
   app.googleMaps.initialize();
@@ -11,13 +13,14 @@ app.init = function() {
   //app.initBigDataDiv();
   //app.initSlider();
   //app.setupRadarButtonToggle();
+  app.setupStoreButton();
   app.setupTrackUser();
 }
 app.setupTrackUser = function() {
   // this id is crap for my first test run
   // but we'd need to generate a new one for each "ride/game" played
   app.userId = Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-  setInterval(app.trackUser, 5000);
+  app.trackIntervalId = setInterval(app.trackUser, 5000);
 }
 app.trackUser = function(){
   if (navigator.geolocation) {
@@ -31,21 +34,31 @@ app.trackFail = function(msg) {
   // do nothing
 }
 app.trackSuccess = function(location) {
-  app.storeUserTracking(location.coords.latitude,location.coords.longitude);
+  //app.storeUserTracking(location.coords.latitude,location.coords.longitude);
+  var d = new Date();
+  var utc = d.toUTCString();
+  app.userTrack.push(
+    {
+       "lat": location.coords.latitude,
+       "lon": location.coords.longitude,
+       "timestamp": utc
+    }
+  )
 }
-app.storeUserTracking = function(lat,lon){
+app.storeUserTracking = function(){
   $.ajax({
     type: "POST",
     url: "/coords",
     data: { 
-      lat: lat,
-      lon: lon,
-      id: app.userId
+      "id": app.userId,
+      "track": app.userTrack
     }
   })
   .done(function( msg ) {
     // do nothing
   });
+  // oh yuo, shtop it!
+  clearInterval(app.trackIntervalId);
 }
 /*app.setupRadarButtonToggle = function() {
   $("#toggle_button").click(function() {
@@ -53,6 +66,11 @@ app.storeUserTracking = function(lat,lon){
     app.googleMaps.loadOverlay();
   });
 }*/
+app.setupStoreButton = function() {
+  $("#store_button").click(function() {
+    app.storeUserTracking();
+  });
+}
 /*app.pausePlayDiv = function() {
   $("#pause_play").click(function() {
     app.pause = (app.pause == false ? true : false)

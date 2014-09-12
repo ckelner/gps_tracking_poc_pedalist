@@ -17,7 +17,7 @@ body {
 #container, #tweet_map {
   width: 100%;
 }
-#tweet_map_highlights {
+/*#tweet_map_highlights {
   background-color: lightblue;
   position: relative;
 }
@@ -46,4 +46,12 @@ body {
   height: 22px;
   bottom: 0px;
   right: 82px;
+}*/
+#store_button_div {
+  position: fixed;
+  width: 25px;
+  height: 22px;
+  bottom: 0px;
+  right: 82px;
 }
+
