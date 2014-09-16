@@ -4,14 +4,14 @@ app.map = {};
 app.map.openMarkers = [];
 app.map.allMarkers = [];
 app.socket = io.connect(window.location.hostname);
-app.init = function() {
+/*app.init = function() {
   if( app.fillMapHeight ) {
     app.fillMapHeight();
   }
   app.googleMaps.initialize();
   //app.loadTweetDataFromDB();
   //app.setupTweetStreamSocket();
-}
+}*/
 /*app.loadTweetDataFromDB = function() {
   app.socket.on('firstShow', function (data) {
     var size = data.tweets.length
