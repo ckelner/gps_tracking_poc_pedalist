@@ -12,41 +12,9 @@ body {
   position: relative;
   top: 0;
   left: 0;
-  height: 50%;
-}
-#container, #tweet_map {
+  height: 100%;
   width: 100%;
 }
-/*#tweet_map_highlights {
-  background-color: lightblue;
-  position: relative;
-}
-#tweet_map {
-  position: relative;
-}
-#pause_play {
-  position: fixed;
-  bottom: 0px;
-  right: 0px;
-  width: 20px;
-  height: 20px;
-  border: 1px dotted black;
-}
-#big_data {
-  position: fixed;
-  bottom: 0px;
-  right: 21px;
-  width: 20px;
-  height: 20px;
-  border: 1px dotted black;
-}
-#toggle_radar {
-  position: fixed;
-  width: 25px;
-  height: 22px;
-  bottom: 0px;
-  right: 82px;
-}*/
 #store_button_div {
   position: fixed;
   width: 25px;
