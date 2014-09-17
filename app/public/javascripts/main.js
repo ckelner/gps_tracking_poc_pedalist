@@ -13,29 +13,45 @@ app.setupTrackUser = function() {
   // this id is crap for my first test run
   // but we'd need to generate a new one for each "ride/game" played
   app.userId = Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-  app.trackIntervalId = setInterval(app.trackUser, 5000);
+  app.trackUser();
 }
 app.trackUser = function(){
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(app.trackSuccess);
+    var geo_options = {
+      enableHighAccuracy: true, 
+      maximumAge        : 30000, 
+      timeout           : 5000
+    };
+    // will update as the user moves
+    navigator.geolocation.watchPosition(
+      app.trackSuccess,
+      app.trackFail,
+      geo_options
+    );
   } else {
-    var html5Options = { enableHighAccuracy: true, timeout: 3000, maximumAge: 0 };
-    geolocator.locate(app.googleMaps.trackSuccess, app.trackFail, true, html5Options);
+    // fuck we ain't tracking shit!
+    // since this is POC...
+    console.log("Your old browser sucks!");
   }
-}
-app.trackFail = function(msg) {
-  // do nothing
 }
 app.trackSuccess = function(location) {
   var d = new Date();
   var utc = d.toUTCString();
   app.userTrack.push(
     {
-       "lat": location.coords.latitude,
-       "lon": location.coords.longitude,
-       "timestamp": utc
+      "lat": location.coords.latitude,
+      "lon": location.coords.longitude,
+      "accuracy": location.coords.accuracy,
+      "altitude": location.coords.altitude,
+      "altitudeAccuracy": location.coords.altitudeAccuracy,
+      "heading": location.coords.heading,
+      "speed": location.coords.speed,
+      "timestamp": utc
     }
   )
+}
+app.trackFail = function(msg) {
+  console.log("Failed to get coords: " + msg);
 }
 app.storeUserTracking = function(){
   $.ajax({
