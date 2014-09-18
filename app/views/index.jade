@@ -4,13 +4,16 @@ html
     meta(name="viewport" content="initial-scale=1.0, user-scalable=no")
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
-    script(type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=weather&key=AIzaSyBqTyKjtWjOabF5sUhSjsniEHl_J9RMLPI&sensor=true")
     script(type="text/javascript" src="/javascripts/jquery-1.7.1.min.js")
     script(type="text/javascript" src="javascripts/main.js")
-    script(type="text/javascript" src="javascripts/common.js")
-    script(type="text/javascript" src="javascripts/gmaps.js")
   body
     div#parentcontainer
-      div#container
-    div#store_button_div
-      button#store_button Stop Tracking
+      div#pedalist_logo
+      div#buttons
+        button#start_button Start
+        button#stop_button Stop
+      div#track
+        p#tracking.
+          Tracking!
+        p#track_complete.
+          Complete!

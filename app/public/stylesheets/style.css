@@ -6,20 +6,57 @@ body {
 #parentcontainer {
   width: 100%;
   height: 100%;
-  position: relative;
-}
-#container {
-  position: relative;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-}
-#store_button_div {
   position: fixed;
-  width: 50px;
-  height: 44px;
-  bottom: 0px;
-  right: 82px;
+  top: 0px;
+  left: 0px;
+}
+#pedalist_logo {
+  position: relative;
+  width: 440px;
+  height: 400px;
+  padding-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  background-image: url("../imgs/pedalist.png");
+  background-position: 0 15px;
+  background-repeat: no-repeat;
+}
+#buttons {
+  position: relative;
+  padding-top: 15px; /* adjust for pedalist logo */
+  width: 221px; /* width of buttons plus margin */
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  left: -20px; /* adjust for margin */
+}
+#start_button, #stop_button {
+  width: 100px;
+  height: 100px;
+}
+#stop_button {
+  margin-left: 20px;
+}
+#track{
+  position: relative;
+  width: 1px;
+  margin-left: auto;
+  margin-right: auto;
+  top: -10px;
+  left: -80px;
+}
+#tracking {
+  position: relative;
+  color: red;
+  font-size: 2em;
+  font-weight: 300;
+  display: none;
+}
+#track_complete {
+  position: relative;
+  color: green;
+  font-size: 2em;
+  font-weight: 300;
+  display: none;
 }
 
